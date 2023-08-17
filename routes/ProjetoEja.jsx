@@ -30,7 +30,7 @@ export default function ProjetoEja() {
 
   useEffect(() => {
     setChartData({
-      labels: ["Espanhol", "Ens.Religioso", "Matemática", "Matemática", "Matemática", "Matemática"],
+      labels: ["Espanhol", "Ens.Religioso", "Matemática"],
       datasets: [
         {
           label: "Videos prontos!",

@@ -30,7 +30,7 @@ export default function ProjetoEnemMax() {
 
   useEffect(() => {
     setChartData({
-      labels: ["Espanhol", "Ens.Religioso", "Matemática"],
+      labels: ["Espanhol", "Ens.Religioso", "Matemática", "teste", "teste", "teste", "teste", "teste", "teste", "teste"],
       datasets: [
         {
           label: "Videos prontos!",
