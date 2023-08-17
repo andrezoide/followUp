@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import GoHome from "../components/GoHome";
 
 ChartJS.register(
   CategoryScale,
@@ -102,6 +103,7 @@ export default function ProjetoEnemMax() {
 
         <button onClick={handleUpdate}>Atualizar</button>
       </div>
+      <GoHome />
     </>
   )
 }

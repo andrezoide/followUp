@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import GoHome from "../components/GoHome";
 
 ChartJS.register(
   CategoryScale,
@@ -29,7 +30,7 @@ export default function ProjetoEja() {
 
   useEffect(() => {
     setChartData({
-      labels: ["Espanhol", "Ens.Religioso", "Matemática"],
+      labels: ["Espanhol", "Ens.Religioso", "Matemática", "Matemática", "Matemática", "Matemática"],
       datasets: [
         {
           label: "Videos prontos!",
@@ -102,6 +103,7 @@ export default function ProjetoEja() {
 
         <button onClick={handleUpdate}>Atualizar</button>
       </div>
+      <GoHome />
     </>
   )
 }

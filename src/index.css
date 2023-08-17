@@ -66,3 +66,9 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.chart-container {
+  width: 500px;  /* Define a largura */
+  height: 500px;  /* Define a altura */
+  margin: 0 auto; /* Centraliza horizontalmente */
+}
