@@ -5,8 +5,8 @@ export default function NavBar() {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-md">
-          <Link to={"/projeto-eja"}>Projeto EJA</Link>
-          <Link to={"/projeto-enem-max"}>Projeto Enem Max</Link>
+          <Link to={"/projeto-eja"}><button>Projeto EJA</button></Link>
+          <Link to={"/projeto-enem-max"}><button>Projeto Enem Max</button></Link>
         </div>
       </nav>
     </>
