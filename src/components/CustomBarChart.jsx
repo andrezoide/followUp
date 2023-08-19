@@ -48,9 +48,10 @@ export default function CustomBarChart({ labels, datasets, title, localStorageKe
     localStorage.setItem(localStorageKey, JSON.stringify(chartData));
   }, [chartData, localStorageKey]);
 
-  const [selectedSubject, setSelectedSubject] = useState("");
+  const [selectedSubject, setSelectedSubject] = useState(chartData.labels[0]);
   const [videoCount, setVideoCount] = useState("");
-  const [selectedMetaSubject, setSelectedMetaSubject] = useState("");
+  const [selectedMetaSubject, setSelectedMetaSubject] = useState(chartData.labels[0]);
+
 
   const handleUpdate = () => {
     const subjectIndex = chartData.labels.findIndex(subject => subject === selectedSubject);
@@ -153,16 +154,18 @@ export default function CustomBarChart({ labels, datasets, title, localStorageKe
       <div className="chart-container">
         <Bar options={chartOptions} data={chartData} />
       </div>
-      <div className="update-sections">
+      <div className="update-controls">
         <div className="selection">
           <h3>Atualizar Vídeos Prontos</h3>
           <select value={selectedSubject} onChange={e => setSelectedSubject(e.target.value)}>
+            <option value="" disabled>Selecione uma matéria</option>
             {chartData.labels && chartData.labels.map(subject => (
               <option key={subject} value={subject}>
                 {subject}
               </option>
             ))}
           </select>
+
           <input
             type="number"
             value={videoCount}
@@ -175,6 +178,7 @@ export default function CustomBarChart({ labels, datasets, title, localStorageKe
         <div className="selection-meta">
           <h3>Atualizar TOTAL de Vídeos</h3>
           <select value={selectedMetaSubject} onChange={e => setSelectedMetaSubject(e.target.value)}>
+            <option value="" disabled>Selecione uma matéria</option>
             {chartData.labels && chartData.labels.map(subject => (
               <option key={subject} value={subject}>
                 {subject}

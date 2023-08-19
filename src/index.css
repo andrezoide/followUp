@@ -6,62 +6,31 @@ body {
   overflow-x: hidden;
 }
 
-.container {
-  padding: 2vh;
+.chart-container {
+  flex: 0 0 65%;
+  /* Isso fará o gráfico ocupar 65% da largura disponível */
+  padding: 20px;
+}
+
+.update-controls {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  align-items: start;
+  padding: 20px;
+  flex: 0 0 35%;
+  /* Isso fará as funções de atualização ocupar 35% da largura disponível */
 }
 
 .content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90vw;
-  gap: 2vh; 
-}
-
-.chart-container {
+  flex-direction: row;
+  /* Garantir que os itens estão alinhados horizontalmente */
+  align-items: flex-start;
+  /* Alinhar os itens pelo topo */
   width: 100%;
-  flex: 3;
-  margin-bottom: 2vh;
+  max-width: 1200px;
 }
 
-.update-sections {
-  width: 100%; 
-  max-width: 250px; 
-  display: flex;
-  flex-direction: column;
-  gap: 2vh;
-}
-
-.selection,
-.selection-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 1vh;
-  width: 100%; 
-}
-
-@media (min-width: 768px) {
-  .content {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: start; 
-  }
-
-  .chart-container {
-    margin-right: 2vw;
-    flex: 4;
-  }
-
-  .update-sections {
-    flex: 1;
-    width: 250px; 
-  }
-}
 
 .button {
   padding: 10px 20px;
@@ -79,8 +48,8 @@ body {
 
 .banner {
   cursor: pointer;
-  width: 30vw; 
-  height: 40vh; 
+  width: 30vw;
+  height: 40vh;
   background-size: cover;
   background-position: center;
   display: flex;
@@ -97,8 +66,8 @@ body {
 .banner-container {
   display: flex;
   justify-content: space-evenly;
-  flex-wrap: wrap; 
-  gap: 2vh; 
+  flex-wrap: wrap;
+  gap: 2vh;
 }
 
 .login-page {
@@ -112,8 +81,8 @@ body {
   background-color: #ffffff;
   padding: 2vh;
   border-radius: 8px;
-  width: 80vw; 
-  max-width: 300px; 
+  width: 80vw;
+  max-width: 300px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
