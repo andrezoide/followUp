@@ -28,6 +28,14 @@ export default function CustomBarChart({ labels, datasets, title, localStorageKe
 
   const [chartData, setChartData] = useState(JSON.parse(localStorage.getItem(localStorageKey)) || defaultData);
   const [chartOptions, setChartOptions] = useState({});
+  const [chapterVideoCount, setChapterVideoCount] = useState("");
+
+  const getTotalChapterVideos = () => {
+    if (chartData.datasets && chartData.datasets[2] && chartData.datasets[2].data) {
+      return chartData.datasets[2].data.reduce((acc, val) => acc + Number(val), 0);
+    }
+    return 0;
+  };
 
   useEffect(() => {
     setChartOptions({
@@ -66,13 +74,12 @@ export default function CustomBarChart({ labels, datasets, title, localStorageKe
             ...prevData.datasets[0],
             data: updatedData,
           },
-          {
-            ...prevData.datasets[1],
-          }
+          ...prevData.datasets.slice(1) // Mantenha os outros conjuntos de dados inalterados
         ],
       }));
     }
   };
+
 
   const handleMetaUpdate = () => {
     const subjectIndex = chartData.labels.findIndex(subject => subject === selectedMetaSubject);
@@ -83,11 +90,29 @@ export default function CustomBarChart({ labels, datasets, title, localStorageKe
       setChartData(prevData => ({
         ...prevData,
         datasets: [
-          {
-            ...prevData.datasets[0],
-          },
+          prevData.datasets[0], // Mantenha o conjunto de dados de "Vídeos Prontos" inalterado
           {
             ...prevData.datasets[1],
+            data: updatedData,
+          },
+          prevData.datasets[2] // Mantenha o conjunto de dados de "Vídeos de Capítulos" inalterado
+        ],
+      }));
+    }
+  };
+
+  const handleChapterUpdate = () => {
+    const subjectIndex = chartData.labels.findIndex(subject => subject === selectedSubject);
+    if (subjectIndex !== -1) {
+      const updatedData = [...chartData.datasets[2].data];
+      updatedData[subjectIndex] = chapterVideoCount;
+
+      setChartData(prevData => ({
+        ...prevData,
+        datasets: [
+          ...prevData.datasets.slice(0, 2), // Mantenha os dois primeiros conjuntos de dados inalterados
+          {
+            ...prevData.datasets[2],
             data: updatedData,
           }
         ],
@@ -112,6 +137,7 @@ export default function CustomBarChart({ labels, datasets, title, localStorageKe
     // Limpe os campos de entrada
     setVideoCount("");
     setMetaVideoCount("");
+    setChapterVideoCount("");
 
     // Feche o modal de confirmação
     closeClearConfirmation();
@@ -176,7 +202,7 @@ export default function CustomBarChart({ labels, datasets, title, localStorageKe
           <h4>Total de Vídeos Prontos: {getTotalVideosProntos()}</h4>
         </div>
         <div className="selection-meta">
-          <h3>Atualizar TOTAL de Vídeos</h3>
+          <h3>Atualizar Total Videos Questões</h3>
           <select value={selectedMetaSubject} onChange={e => setSelectedMetaSubject(e.target.value)}>
             <option value="" disabled>Selecione uma matéria</option>
             {chartData.labels && chartData.labels.map(subject => (
@@ -193,6 +219,26 @@ export default function CustomBarChart({ labels, datasets, title, localStorageKe
           />
           <button onClick={handleMetaUpdate}>Atualizar</button>
           <h4>Total de Vídeos: {getTotalVideosMeta()}</h4>
+          <div className="selection-chapter">
+            <h3>Atualizar Total Vídeos Capitulos</h3>
+            <select value={selectedSubject} onChange={e => setSelectedSubject(e.target.value)}>
+              <option value="" disabled>Selecione uma matéria</option>
+              {chartData.labels && chartData.labels.map(subject => (
+                <option key={subject} value={subject}>
+                  {subject}
+                </option>
+              ))}
+            </select>
+            <input
+              type="number"
+              value={chapterVideoCount}
+              onChange={e => setChapterVideoCount(e.target.value)}
+              placeholder="Quantidade de vídeos de capítulos"
+            />
+            <button onClick={handleChapterUpdate}>Atualizar</button>
+            <h4>Total de Vídeos de Capítulos: {getTotalChapterVideos()}</h4>
+          </div>
+
           {showClearConfirmation && (
             <div className="confirmation-modal">
               <p>Tem certeza de que deseja limpar o número no gráfico?</p>

@@ -3,7 +3,14 @@ import NavBar from '../components/Navbar';
 import GoHome from '../components/GoHome';
 
 function ProjetoEja() {
-  const labels = ['Matemática', 'Português', 'Ciências', 'História', 'Geografia'];
+
+  const labels = [
+    "Português", "Ciências", "Geografia",
+    "História", "Arte", "Ed.Física",
+    "Inglês", "Biologia", "Física",
+    "Química", "Sociologia", "Filosofia",
+    "Espanhol", "Ens.Religioso", "Matemática",
+  ];
   const datasets = [
     {
       label: 'Vídeos Prontos',
@@ -12,12 +19,19 @@ function ProjetoEja() {
       backgroundColor: 'rgba(75,192,192)'
     },
     {
-      label: 'Total de Vídeos',
+      label: 'Total de Vídeos questões',
       data: [0, 0, 0, 0, 0],
       borderColor: 'rgba(192,75,75,1)',
       backgroundColor: 'rgba(192,75,75)'
-    }
+    },
+    {
+      label: 'Total de Vídeos Capitulos',
+      data: [0, 0, 0, 0, 0],
+      borderColor: 'rgba(55,12,192,1)',
+      backgroundColor: 'rgba(55,12,192,1)'
+    },
   ];
+
 
   return (
     <div>
